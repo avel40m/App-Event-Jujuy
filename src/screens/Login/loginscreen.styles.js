@@ -44,5 +44,20 @@ export const styles = StyleSheet.create({
       color: '#fff',
       fontSize: 18,
       fontWeight: 'bold'
+    },
+    parrafo: {
+      flexDirection: 'row',
+      marginTop: 10,
+      justifyContent: 'center'
+    },
+    parrafoTitulo: {
+      paddingRight:10,
+      fontSize: 18,
+      fontWeight: 'bold'
+    },
+    parrafoLink: {
+      color: 'blue',
+      marginTop: 6,
+      textDecorationLine: 'underline',
     }
   })
