@@ -5,7 +5,6 @@ import { WelcomeScreen } from "../welcome/WelcomeScreen"
 
 export const HomeScreen = () => {
   const {currentUser} = useContext(UserContext);
-  console.log(currentUser);
   return (
     <>
       {

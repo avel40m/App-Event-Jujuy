@@ -3,7 +3,7 @@ import { FlatList, Image, Pressable, SafeAreaView, Text, View } from 'react-nati
 import { getEventsList } from '../../api/events.api'
 import { styles } from './EventsScreen.styles'
 
-export const EventsScreen = () => {
+export const EventsScreen = ({navigation}) => {
   const [eventList, setEventList] = useState([])
   const [loading, setLoading] = useState(false)
 
@@ -16,10 +16,10 @@ export const EventsScreen = () => {
   }, [])
 
   const renderEvent = ({ item }) => {
-    const { name, place, date, images } = item
+    const {id,name, place, date, images } = item
 
     return (
-      <Pressable>
+      <Pressable onPress={() => navigation.navigate("EventDetail",{item})} key={id}>
         <View style={styles.itemContainer}>
           <Image source={{ uri: images[0] }} style={styles.itemImage} />
           <View style={styles.itemContent}>
@@ -32,14 +32,14 @@ export const EventsScreen = () => {
     )
   }
 
-  const renderSkeleton = () => (
-    <View style={styles.itemContainer}>
-      <Image style={styles.itemImage} />
-      <View style={styles.itemContent}>
-        <View style={styles.itemSkeletonName} />
-        <View style={styles.itemSkeletonPlace} />
+  const renderSkeleton = ({item}) => (
+      <View style={styles.itemContainer}>
+        <Image style={styles.itemImage} />
+        <View style={styles.itemContent}>
+          <View style={styles.itemSkeletonName} />
+          <View style={styles.itemSkeletonPlace} />
+        </View>
       </View>
-    </View>
   )
 
   return (
