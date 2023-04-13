@@ -1,23 +1,23 @@
-import {View,Text,StyleSheet,StatusBar, ScrollView, Dimensions,Image} from 'react-native';
-import MapView,{Marker} from 'react-native-maps';
-import { Entypo } from '@expo/vector-icons'; 
-import { MaterialIcons } from '@expo/vector-icons'; 
+import { View, Text, StyleSheet, StatusBar, ScrollView, Dimensions, Image } from 'react-native';
+import MapView, { Marker } from 'react-native-maps';
+import { Entypo } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
 import { Fontisto } from '@expo/vector-icons';
 import { styles } from './eventdetailsscreen.styles';
 
-export const EventDetailScreen = ({route}) => {
-    const {item} = route.params
+export const EventDetailScreen = ({ route }) => {
+    const { item } = route.params
     return (
         <ScrollView style={styles.container}>
             <View style={styles.imageContainer}>
                 <ScrollView horizontal pagingEnabled style={styles.imageContainer}>
                     {
-                        item.images.map((image,index) => (
-                            <Image 
-                            key={index}
-                            source={{ uri: image}}
-                            style={styles.image}
-                            resizeMode='cover'
+                        item.images.map((image, index) => (
+                            <Image
+                                key={index}
+                                source={{ uri: image }}
+                                style={styles.image}
+                                resizeMode='cover'
                             />
                         ))
                     }
@@ -30,7 +30,7 @@ export const EventDetailScreen = ({route}) => {
             <View style={styles.location}>
                 <View style={styles.lugar}>
                     <Entypo name="location" size={24} color="red" />
-                    <Text style={styles.locationTitle}>{item.place}</Text>    
+                    <Text style={styles.locationTitle}>{item.place}</Text>
                 </View>
                 <View style={styles.hours}>
                     <View style={styles.timer}>
@@ -44,25 +44,25 @@ export const EventDetailScreen = ({route}) => {
                 </View>
             </View>
 
-
-            
-            {/* <MapView
-        style={styles.map}
-        initialRegion={{
-          latitude: item.locationCoordinates.latitude,
-          longitude: item.locationCoordinates.longitude,
-          latitudeDelta: 0.002,
-          longitudeDelta: 0.002
-        }}
-      >
-        <Marker
-          coordinate={{
-            latitude: item.locationCoordinates.latitude,
-            longitude: item.locationCoordinates.longitude
-          }}
-          title={item.title}
-        />
-      </MapView> */}
+      
+            <MapView
+                style={styles.map}
+                initialRegion={{
+                    latitude: Number(item.locationCoordinates.latitude),
+                    longitude: Number(item.locationCoordinates.longitude),
+                    latitudeDelta: 0.005,
+                    longitudeDelta: 0.005,
+                  }}
+            >
+                <Marker
+                    coordinate={{
+                        
+                    latitude: Number(item.locationCoordinates.latitude),
+                    longitude: Number(item.locationCoordinates.longitude),
+                    }}
+                    title={item.title}
+                />
+            </MapView>
         </ScrollView>
     )
 }

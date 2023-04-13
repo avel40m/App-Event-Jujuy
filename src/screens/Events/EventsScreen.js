@@ -16,10 +16,10 @@ export const EventsScreen = ({navigation}) => {
   }, [])
 
   const renderEvent = ({ item }) => {
-    const {id,name, place, date, images } = item
+    const {name, place, date, images } = item
 
     return (
-      <Pressable onPress={() => navigation.navigate("EventDetail",{item})} key={id}>
+      <Pressable onPress={() => navigation.navigate("EventDetail",{item})}>
         <View style={styles.itemContainer}>
           <Image source={{ uri: images[0] }} style={styles.itemImage} />
           <View style={styles.itemContent}>
@@ -32,7 +32,7 @@ export const EventsScreen = ({navigation}) => {
     )
   }
 
-  const renderSkeleton = ({item}) => (
+  const renderSkeleton = () => (
       <View style={styles.itemContainer}>
         <Image style={styles.itemImage} />
         <View style={styles.itemContent}>
