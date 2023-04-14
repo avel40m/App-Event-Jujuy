@@ -4,6 +4,7 @@ import { MainStackScreen } from './src/screens/Main/MainScreen'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { UserProvider } from './src/contexts/UserContext'
 import { EventDetailScreen } from './src/screens/EventDetailScreen/EventDetailScreen'
+import { COLORS } from './src/util/Theme'
 
 const LocationListStack = createNativeStackNavigator()
 
@@ -19,7 +20,7 @@ export default function App () {
         </NavigationContainer>
       </UserProvider>
 
-      <StatusBar style='auto' />
+      <StatusBar style='light' backgroundColor={COLORS.primary} />
     </>
   )
 }

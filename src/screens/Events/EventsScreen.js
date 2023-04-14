@@ -1,30 +1,24 @@
-import { useEffect, useState } from 'react'
 import { FlatList, Image, Pressable, SafeAreaView, Text, View } from 'react-native'
-import { getEventsList } from '../../api/events.api'
 import { styles } from './EventsScreen.styles'
+import { SearchBar } from '../../components/SearchbBar/SearchBar'
+import { FilterBar } from '../../components/FilterBar/FilterBar'
+import { useEvents } from '../../hooks/useEvents'
 
-export const EventsScreen = ({navigation}) => {
-  const [eventList, setEventList] = useState([])
-  const [loading, setLoading] = useState(false)
+const list = [1, 2, 3, 4, 5, 6]
 
-  useEffect(() => {
-    setLoading(true)
-    getEventsList()
-      .then((data) => setEventList(data))
-      .catch((error) => console.log(error))
-      .finally(() => setLoading(false))
-  }, [])
+export const EventsScreen = ({ navigation }) => {
+  const { eventList, loading, handleSearch, searchQuery } = useEvents()
 
   const renderEvent = ({ item }) => {
-    const {name, place, date, images } = item
+    const { name, place, date, images } = item
 
     return (
-      <Pressable onPress={() => navigation.navigate("EventDetail",{item})}>
+      <Pressable onPress={() => navigation.navigate('EventDetail', { item })}>
         <View style={styles.itemContainer}>
           <Image source={{ uri: images[0] }} style={styles.itemImage} />
           <View style={styles.itemContent}>
             <Text style={styles.itemName}>{name}</Text>
-            <Text>{place}</Text>
+            <Text style={styles.itemPlace}>{place}</Text>
             <Text style={styles.itemDate}>{date}</Text>
           </View>
         </View>
@@ -33,20 +27,22 @@ export const EventsScreen = ({navigation}) => {
   }
 
   const renderSkeleton = () => (
-      <View style={styles.itemContainer}>
-        <Image style={styles.itemImage} />
-        <View style={styles.itemContent}>
-          <View style={styles.itemSkeletonName} />
-          <View style={styles.itemSkeletonPlace} />
-        </View>
+    <View style={styles.itemContainer}>
+      <Image style={styles.itemImage} />
+      <View style={styles.itemContent}>
+        <View style={styles.itemSkeletonName} />
+        <View style={styles.itemSkeletonPlace} />
       </View>
+    </View>
   )
 
   return (
     <SafeAreaView style={styles.container}>
+      <SearchBar handleSearch={handleSearch} searchQuery={searchQuery} />
+      <FilterBar eventList={eventList} />
       {loading
         ? <FlatList
-            data={[...Array(10)]}
+            data={list}
             renderItem={renderSkeleton}
             keyExtractor={item => item}
             style={styles.list}

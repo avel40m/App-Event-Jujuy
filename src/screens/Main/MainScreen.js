@@ -12,7 +12,7 @@ const Tab = createBottomTabNavigator()
 const TAB_ICON = {
   Home: 'home',
   Events: 'glass-cocktail',
-  Festival: 'party-popper',
+  Festival: 'party-popper'
 }
 
 const screenOptions = ({ route }) => {
@@ -25,7 +25,6 @@ const screenOptions = ({ route }) => {
     tabBarInactiveTintColor: COLORS.inactive,
     headerShown: false,
     tabBarStyle: styles.tabBar
-
   }
 }
 export const MainStackScreen = () => {
