@@ -1,12 +1,18 @@
-import { View, Text, StyleSheet, StatusBar, ScrollView, Dimensions, Image } from 'react-native';
+import { View, Text, StyleSheet, StatusBar, ScrollView, Dimensions, Image, Button } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import { Entypo } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Fontisto } from '@expo/vector-icons';
 import { styles } from './eventdetailsscreen.styles';
+import { useNavigation } from '@react-navigation/native';
+import { useContext } from 'react';
+import { UserContext } from '../../contexts/UserContext';
 
 export const EventDetailScreen = ({ route }) => {
     const { item } = route.params
+    const navigation = useNavigation();
+    const {currentUser} = useContext(UserContext);
+
     return (
         <ScrollView style={styles.container}>
             <View style={styles.imageContainer}>
@@ -42,6 +48,15 @@ export const EventDetailScreen = ({ route }) => {
                         <Text>{item.date}</Text>
                     </View>
                 </View>
+                {
+                    currentUser &&
+                        <View>
+                            <Button
+                            title='Ver comentarios'
+                            onPress={() => navigation.navigate('Comment', {name: item.name})}
+                            />
+                        </View>
+                }
             </View>
 
       
