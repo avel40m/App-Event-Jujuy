@@ -17,5 +17,24 @@ export const styles = StyleSheet.create({
   },
   flexItem: {
     color: COLORS.text
+  },
+  modalBackground: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,.5)'
+  },
+  modalContainer: {
+    width: '80%',
+    backgroundColor: COLORS.white,
+    borderRadius: 4
+  },
+  modalOption: {
+    padding: 16,
+    borderBottomWidth: 0.5,
+    borderColor: COLORS.inactive
+  },
+  textOption: {
+    color: COLORS.primary
   }
 })

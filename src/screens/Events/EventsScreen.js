@@ -3,11 +3,15 @@ import { styles } from './EventsScreen.styles'
 import { SearchBar } from '../../components/SearchbBar/SearchBar'
 import { FilterBar } from '../../components/FilterBar/FilterBar'
 import { useEvents } from '../../hooks/useEvents'
+import { useSearch } from '../../hooks/useSearch'
+import { useFilters } from '../../hooks/useFilters'
 
 const list = [1, 2, 3, 4, 5, 6]
 
 export const EventsScreen = ({ navigation }) => {
-  const { eventList, loading, handleSearch, searchQuery } = useEvents()
+  const { sort, previous, upcoming, handleSort, handlePrevious, handleUpcoming, resetFilters } = useFilters()
+  const { searchQuery, updateSearch, resetSearch } = useSearch()
+  const { eventList, loading } = useEvents({ searchQuery, sort, previous, upcoming })
 
   const renderEvent = ({ item }) => {
     const { name, place, date, images } = item
@@ -38,8 +42,18 @@ export const EventsScreen = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <SearchBar handleSearch={handleSearch} searchQuery={searchQuery} />
-      <FilterBar eventList={eventList} />
+      <SearchBar
+        handleSearch={updateSearch}
+        searchQuery={searchQuery}
+        resetSearchQuery={resetSearch}
+      />
+      <FilterBar
+        handleSort={handleSort}
+        handlePrevious={handlePrevious}
+        handleUpcoming={handleUpcoming}
+        resetFilters={resetFilters}
+        eventList={eventList}
+      />
       {loading
         ? <FlatList
             data={list}
