@@ -33,7 +33,7 @@ export const MainStackScreen = () => {
     <Tab.Navigator screenOptions={screenOptions}>
       <Tab.Screen name='Home' options={{ title: 'Inicio' }} component={HomeScreen} />
       <Tab.Screen name='Events' options={{ title: 'Eventos' }} component={EventsScreen} />
-      <Tab.Screen name='Festival' options={{ title: 'Festival' }} component={FestivalScreen} />
+      <Tab.Screen name='Festival' options={{ title: 'Festivales' }} component={FestivalScreen} />
     </Tab.Navigator>
   )
 }
