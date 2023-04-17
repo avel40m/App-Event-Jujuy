@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
 import { FlatList, Image, Pressable, SafeAreaView, Text, View } from 'react-native'
 import { getFestivalsList } from '../../api/festivals.api'
-import { styles } from './FestivalsSreen.styles'
+import { styles } from './FestivalsScreen.styles'
 
 export const FestivalsScreen = ({ navigation }) => {
-    const [festivalList, setFestivalList] = useState([])
+    const [eventList, setFestivalList] = useState([])
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
@@ -15,7 +15,7 @@ export const FestivalsScreen = ({ navigation }) => {
             .finally(() => setLoading(false))
     }, [])
 
-    const renderFestival = ({ item }) => {
+    const renderEvent = ({ item }) => {
         const { name, place, date, images } = item
 
         return (
@@ -52,8 +52,8 @@ export const FestivalsScreen = ({ navigation }) => {
                     style={styles.list}
                 />
                 : <FlatList
-                    data={festivalList}
-                    renderItem={renderFestival}
+                    data={eventList}
+                    renderItem={renderEvent}
                     keyExtractor={(item) => item.id}
                     style={styles.list}
                 />}

@@ -5,7 +5,7 @@ import { COLORS, SPACING } from '../../util/Theme'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { HomeScreen } from '../Home/HomeScreen'
 import { EventsScreen } from '../Events/EventsScreen'
-import { FestivalScreen } from '../Festival/FestivalsScreen'
+import { FestivalScreen, FestivalsScreen } from '../Festival/FestivalsScreen'
 
 const Tab = createBottomTabNavigator()
 
@@ -33,7 +33,7 @@ export const MainStackScreen = () => {
     <Tab.Navigator screenOptions={screenOptions}>
       <Tab.Screen name='Home' options={{ title: 'Inicio' }} component={HomeScreen} />
       <Tab.Screen name='Events' options={{ title: 'Eventos' }} component={EventsScreen} />
-      <Tab.Screen name='Festival' options={{ title: 'Festivales' }} component={FestivalScreen} />
+      <Tab.Screen name='Festival' options={{ title: 'Festivales' }} component={FestivalsScreen} />
     </Tab.Navigator>
   )
 }
