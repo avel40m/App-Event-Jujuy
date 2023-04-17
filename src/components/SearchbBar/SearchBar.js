@@ -1,4 +1,3 @@
-import React from 'react'
 import { TextInput, View, Pressable } from 'react-native'
 import { AntDesign, Feather } from '@expo/vector-icons'
 import { styles } from './SearchBar.styles'

@@ -52,6 +52,7 @@ export const EventsScreen = ({ navigation }) => {
         handlePrevious={handlePrevious}
         handleUpcoming={handleUpcoming}
         resetFilters={resetFilters}
+        filters={{ sort, previous, upcoming }}
         eventList={eventList}
       />
       {loading

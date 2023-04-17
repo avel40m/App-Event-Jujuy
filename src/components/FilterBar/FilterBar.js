@@ -1,17 +1,18 @@
-import { Text, View, Pressable, Modal, TouchableOpacity } from 'react-native'
-import { styles } from './FilterBar.styles'
 import { useState } from 'react'
+import { Text, View, Pressable, Modal, TouchableOpacity } from 'react-native'
 import { AntDesign } from '@expo/vector-icons'
+import { styles } from './FilterBar.styles'
 import { COLORS, FONT_SIZE } from '../../util/Theme'
+import { ModalOption } from '../ModalOption/ModalOption'
 
-export const FilterBar = ({ handleSort, handlePrevious, handleUpcoming, resetFilters, eventList }) => {
+export const FilterBar = ({ handleSort, handlePrevious, handleUpcoming, resetFilters, filters, eventList }) => {
   const [show, setShow] = useState(false)
 
-  const handleShowModal = () => setShow(!show)
+  const handleShowModal = () => setShow(prev => !prev)
 
   return (
     <View style={styles.container}>
-      <Text style={styles.flexItem}>{eventList.length} resultados</Text>
+      <Text style={styles.text}>{eventList.length} resultados</Text>
       <Pressable onPress={handleShowModal}>
         <AntDesign name='filter' size={FONT_SIZE.lg} color={COLORS.text} />
       </Pressable>
@@ -20,49 +21,38 @@ export const FilterBar = ({ handleSort, handlePrevious, handleUpcoming, resetFil
         animationType='fade'
         transparent
       >
-        <View style={styles.modalBackground}>
+        <TouchableOpacity
+          activeOpacity={1}
+          style={styles.modalBackground}
+          onPress={handleShowModal}
+        >
           <View style={styles.modalContainer}>
-            <TouchableOpacity
-              onPress={() => {
-                handleShowModal()
-                handleSort()
-              }}
-              style={styles.modalOption}
-            >
-              <Text>Odernar por fecha</Text>
-            </TouchableOpacity>
+            <ModalOption
+              onPress={handleSort}
+              filter={filters.sort}
+              text='Ordenar por fecha'
+            />
+
+            <ModalOption
+              onPress={handleUpcoming}
+              filter={filters.upcoming}
+              text='Eventos próximos'
+            />
+
+            <ModalOption
+              onPress={handlePrevious}
+              filter={filters.previous}
+              text='Eventos pasados'
+            />
 
             <TouchableOpacity
-              onPress={() => {
-                handleShowModal()
-                handleUpcoming()
-              }}
-              style={styles.modalOption}
-            >
-              <Text>Eventos próximos</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              onPress={() => {
-                handleShowModal()
-                handlePrevious()
-              }}
-              style={styles.modalOption}
-            >
-              <Text>Eventos pasados</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              onPress={() => {
-                handleShowModal()
-                resetFilters()
-              }}
-              style={styles.modalOption}
+              onPress={resetFilters}
+              style={styles.modalOptionDelete}
             >
               <Text style={styles.textOption}>Eliminar filtros</Text>
             </TouchableOpacity>
           </View>
-        </View>
+        </TouchableOpacity>
       </Modal>
     </View>
   )

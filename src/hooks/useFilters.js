@@ -5,14 +5,14 @@ export const useFilters = () => {
   const [previous, setPrevious] = useState(false)
   const [upcoming, setUpcoming] = useState(false)
 
-  const handleSort = () => setSort(!sort)
+  const handleSort = () => setSort(prev => !prev)
 
   const handlePrevious = () => {
-    setPrevious(!previous)
+    setPrevious(prev => !prev)
   }
 
   const handleUpcoming = () => {
-    setUpcoming(!upcoming)
+    setUpcoming(prev => !prev)
   }
 
   const resetFilters = () => {

@@ -3,7 +3,7 @@ import { COLORS } from '../../util/Theme'
 
 export const styles = StyleSheet.create({
   container: {
-    height: 40,
+    height: 50,
     paddingHorizontal: 20,
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -15,24 +15,24 @@ export const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 2
   },
-  flexItem: {
+  text: {
     color: COLORS.text
   },
   modalBackground: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(0,0,0,.5)'
+    backgroundColor: 'rgba(0, 0, 0, 0.4)'
   },
   modalContainer: {
     width: '80%',
     backgroundColor: COLORS.white,
     borderRadius: 4
   },
-  modalOption: {
-    padding: 16,
-    borderBottomWidth: 0.5,
-    borderColor: COLORS.inactive
+  modalOptionDelete: {
+    justifyContent: 'center',
+    paddingHorizontal: 16,
+    height: 60
   },
   textOption: {
     color: COLORS.primary
