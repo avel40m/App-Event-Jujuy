@@ -8,7 +8,7 @@ import { CommentScreen } from './src/screens/Comment/CommentScreen'
 
 const LocationListStack = createNativeStackNavigator()
 
-export default function App () {
+export default function App() {
   return (
     <>
       <UserProvider>
