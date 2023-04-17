@@ -5,7 +5,7 @@ import { COLORS, SPACING } from '../../util/Theme'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { HomeScreen } from '../Home/HomeScreen'
 import { EventsScreen } from '../Events/EventsScreen'
-import { FestivalScreen } from '../Festival/FestivalScreen'
+import { FestivalScreen } from '../Festival/FestivalsScreen'
 
 const Tab = createBottomTabNavigator()
 
