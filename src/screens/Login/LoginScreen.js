@@ -23,31 +23,31 @@ export const LoginScreen = () => {
     }
   });
   const handleLogin = async ({ username, password }) => {
-   if (value) {
-    const res = await loginUser(username,password);
-    if (res === 'ok') {
-              setCurrentUser({ username, password })
+    if (value) {
+      const res = await loginUser(username, password);
+      if (res === 'ok') {
+        setCurrentUser({ username, password })
         navigation.navigate('Home')
-    } else {
+      } else {
         Vibration.vibrate(PATTERN)
-        Alert.alert(res, 'Chequee los datos nuevamente');
-    }
-  } else {
-    let res = await registerUser(username,password);
-    if (res) {
-      Alert.alert('Mensaje: ', 'El usuario existe en la base de datos');
-      Vibration.vibrate(PATTERN)
+        Alert.alert(res, 'Revise los datos nuevamente');
+      }
     } else {
-      Alert.alert('Mensaje','Usuario creado correctamente');
-      setValue(true);
+      let res = await registerUser(username, password);
+      if (res) {
+        Alert.alert('Mensaje: ', 'El usuario no existe en la base de datos');
+        Vibration.vibrate(PATTERN)
+      } else {
+        Alert.alert('Mensaje', 'Usuario creado correctamente');
+        setValue(true);
+      }
     }
-  }
   }
   return (
     <View style={styles.container}>
       <Text style={styles.title}>
         {
-          value ? "Iniciar Session" : "Registrarme"
+          value ? "Iniciar Sesion" : "Registrarme"
         }
       </Text>
       <Controller
@@ -79,13 +79,13 @@ export const LoginScreen = () => {
           />
         )}
         name="password"
-        rules={{ required: "La contraseña es requerido" }}
+        rules={{ required: "La contraseña es requerida" }}
       />
       {errors && <Text style={styles.errorText}>{errors.password?.message}</Text>}
       <TouchableOpacity style={styles.button} onPress={handleSubmit(handleLogin)} >
         <Text style={styles.buttonText}>
           {
-            value ? "Ingresar" : "Regitrarme"
+            value ? "Ingresar" : "Registrarme"
           }
         </Text>
       </TouchableOpacity>
