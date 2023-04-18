@@ -1,5 +1,6 @@
 import { StatusBar } from 'expo-status-bar'
 import { StyleSheet } from 'react-native'
+import { FONT_SIZE } from '../../util/Theme'
 
 export const styles = StyleSheet.create({
   container: {
@@ -9,7 +10,7 @@ export const styles = StyleSheet.create({
     marginTop: StatusBar.currentHeight
   },
   title: {
-    fontSize: 24,
+    fontSize: FONT_SIZE.lg,
     fontWeight: 'bold',
     marginBottom: 16,
     textAlign: 'center'

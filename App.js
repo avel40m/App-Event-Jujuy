@@ -6,7 +6,7 @@ import { UserProvider } from './src/contexts/UserContext'
 import { EventDetailScreen } from './src/screens/EventDetailScreen/EventDetailScreen'
 import { CommentScreen } from './src/screens/Comment/CommentScreen'
 import { FestivalDetailScreen } from './src/screens/FestivalDetailScreen/FestivalDetailScreen'
-
+import { COLORS } from './src/util/Theme'
 const LocationListStack = createNativeStackNavigator()
 
 export default function App() {
@@ -23,7 +23,7 @@ export default function App() {
         </NavigationContainer>
       </UserProvider>
 
-      <StatusBar style='auto' />
+      <StatusBar style='light' backgroundColor={COLORS.primary} />
     </>
   )
 }
