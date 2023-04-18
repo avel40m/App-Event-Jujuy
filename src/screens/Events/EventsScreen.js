@@ -6,7 +6,7 @@ import { useEvents } from '../../hooks/useEvents'
 import { useSearch } from '../../hooks/useSearch'
 import { useFilters } from '../../hooks/useFilters'
 
-const list = [1, 2, 3, 4, 5, 6]
+const previousList = [1, 2, 3, 4, 5, 6]
 
 export const EventsScreen = ({ navigation }) => {
   const { sort, previous, upcoming, handleSort, handlePrevious, handleUpcoming, resetFilters } = useFilters()
@@ -57,7 +57,7 @@ export const EventsScreen = ({ navigation }) => {
       />
       {loading
         ? <FlatList
-            data={list}
+            data={previousList}
             renderItem={renderSkeleton}
             keyExtractor={item => item}
             style={styles.list}
