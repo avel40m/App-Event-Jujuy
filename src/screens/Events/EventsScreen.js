@@ -1,10 +1,11 @@
-import { FlatList, Image, Pressable, SafeAreaView, Text, View } from 'react-native'
+import { FlatList, SafeAreaView } from 'react-native'
 import { styles } from './EventsScreen.styles'
 import { SearchBar } from '../../components/SearchbBar/SearchBar'
 import { FilterBar } from '../../components/FilterBar/FilterBar'
 import { useEvents } from '../../hooks/useEvents'
 import { useSearch } from '../../hooks/useSearch'
 import { useFilters } from '../../hooks/useFilters'
+import { Card, SkeletonCard } from '../../components/Card/Card'
 
 const previousList = [1, 2, 3, 4, 5, 6]
 
@@ -12,33 +13,6 @@ export const EventsScreen = ({ navigation }) => {
   const { sort, previous, upcoming, handleSort, handlePrevious, handleUpcoming, resetFilters } = useFilters()
   const { searchQuery, updateSearch, resetSearch } = useSearch()
   const { eventList, loading } = useEvents({ searchQuery, sort, previous, upcoming })
-
-  const renderEvent = ({ item }) => {
-    const { name, place, date, images } = item
-
-    return (
-      <Pressable onPress={() => navigation.navigate('EventDetail', { item })}>
-        <View style={styles.itemContainer}>
-          <Image source={{ uri: images[0] }} style={styles.itemImage} />
-          <View style={styles.itemContent}>
-            <Text style={styles.itemName}>{name}</Text>
-            <Text style={styles.itemPlace}>{place}</Text>
-            <Text style={styles.itemDate}>{date}</Text>
-          </View>
-        </View>
-      </Pressable>
-    )
-  }
-
-  const renderSkeleton = () => (
-    <View style={styles.itemContainer}>
-      <Image style={styles.itemImage} />
-      <View style={styles.itemContent}>
-        <View style={styles.itemSkeletonName} />
-        <View style={styles.itemSkeletonPlace} />
-      </View>
-    </View>
-  )
 
   return (
     <SafeAreaView style={styles.container}>
@@ -58,13 +32,18 @@ export const EventsScreen = ({ navigation }) => {
       {loading
         ? <FlatList
             data={previousList}
-            renderItem={renderSkeleton}
+            renderItem={SkeletonCard}
             keyExtractor={item => item}
             style={styles.list}
           />
         : <FlatList
             data={eventList}
-            renderItem={renderEvent}
+            renderItem={({ item }) =>
+              <Card
+                item={item}
+                to='EventDetail'
+                navigation={navigation}
+              />}
             keyExtractor={(item) => item.id}
             style={styles.list}
           />}

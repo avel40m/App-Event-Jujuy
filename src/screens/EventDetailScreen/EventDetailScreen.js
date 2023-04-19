@@ -1,11 +1,11 @@
 import { View, Text, ScrollView, Image, Button } from 'react-native'
-import MapView, { Marker } from 'react-native-maps'
 import { Entypo, MaterialIcons, Fontisto } from '@expo/vector-icons'
 
 import { styles } from './eventdetailsscreen.styles'
 import { useNavigation } from '@react-navigation/native'
 import { useContext } from 'react'
 import { UserContext } from '../../contexts/UserContext'
+import { MapComponent } from '../../components/Map'
 
 export const EventDetailScreen = ({ route }) => {
   const { item } = route.params
@@ -53,24 +53,10 @@ export const EventDetailScreen = ({ route }) => {
             />
           </View>}
       </View>
-
-      <MapView
-        style={styles.map}
-        initialRegion={{
-          latitude: Number(item.locationCoordinates.latitude),
-          longitude: Number(item.locationCoordinates.longitude),
-          latitudeDelta: 0.005,
-          longitudeDelta: 0.005
-        }}
-      >
-        <Marker
-          coordinate={{
-            latitude: Number(item.locationCoordinates.latitude),
-            longitude: Number(item.locationCoordinates.longitude)
-          }}
-          title={item.name}
-        />
-      </MapView>
+      <MapComponent
+        name={item.name}
+        locationCoordinates={item.locationCoordinates}
+      />
     </ScrollView>
   )
 }

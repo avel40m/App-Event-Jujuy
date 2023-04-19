@@ -1,15 +1,7 @@
-import { StyleSheet, StatusBar, Dimensions } from 'react-native'
+import { StyleSheet, Dimensions } from 'react-native'
 import { COLORS } from '../../util/Theme'
 
 export const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: StatusBar.currentHeight,
-    backgroundColor: COLORS.grey
-  },
-  list: {
-    padding: 10
-  },
   itemContainer: {
     flex: 1,
     width: Dimensions.get('screen').width - 20,
@@ -60,22 +52,5 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 20,
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10
-  },
-
-  bar: {
-    height: 50,
-    paddingHorizontal: 20,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: COLORS.white,
-    elevation: 3,
-    shadowColor: COLORS.black,
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 2
-  },
-  text: {
-    color: COLORS.text
   }
 })

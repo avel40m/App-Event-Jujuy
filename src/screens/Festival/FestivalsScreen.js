@@ -1,61 +1,41 @@
-import { useEffect, useState } from 'react'
-import { FlatList, Image, Pressable, SafeAreaView, Text, View } from 'react-native'
-import { getFestivalsList } from '../../api/festivals.api'
+import { FlatList, SafeAreaView, Text, View } from 'react-native'
 import { styles } from './FestivalsScreen.styles'
+import { Card, SkeletonCard } from '../../components/Card/Card'
+import { SearchBar } from '../../components/SearchbBar/SearchBar'
+import { useSearch } from '../../hooks/useSearch'
+import { useFestivals } from '../../hooks/useFestivals'
 
 const previousList = [1, 2, 3, 4, 5, 6]
 
 export const FestivalsScreen = ({ navigation }) => {
-  const [eventList, setFestivalList] = useState([])
-  const [loading, setLoading] = useState(false)
-
-  useEffect(() => {
-    setLoading(true)
-    getFestivalsList()
-      .then((data) => setFestivalList(data))
-      .catch((error) => console.log(error))
-      .finally(() => setLoading(false))
-  }, [])
-
-  const renderEvent = ({ item }) => {
-    const { name, place, date, images } = item
-
-    return (
-      <Pressable onPress={() => navigation.navigate('FestivalDetail', { item })}>
-        <View style={styles.itemContainer}>
-          <Image source={{ uri: images[0] }} style={styles.itemImage} />
-          <View style={styles.itemContent}>
-            <Text style={styles.itemName}>{name}</Text>
-            <Text>{place}</Text>
-            <Text style={styles.itemDate}>{date}</Text>
-          </View>
-        </View>
-      </Pressable>
-    )
-  }
-
-  const renderSkeleton = () => (
-    <View style={styles.itemContainer}>
-      <Image style={styles.itemImage} />
-      <View style={styles.itemContent}>
-        <View style={styles.itemSkeletonName} />
-        <View style={styles.itemSkeletonPlace} />
-      </View>
-    </View>
-  )
+  const { searchQuery, updateSearch, resetSearch } = useSearch()
+  const { festivalList, loading } = useFestivals({ searchQuery })
 
   return (
     <SafeAreaView style={styles.container}>
+      <SearchBar
+        handleSearch={updateSearch}
+        searchQuery={searchQuery}
+        resetSearchQuery={resetSearch}
+      />
+      <View style={styles.bar}>
+        <Text style={styles.text}>{festivalList.length} resultados</Text>
+      </View>
       {loading
         ? <FlatList
             data={previousList}
-            renderItem={renderSkeleton}
+            renderItem={SkeletonCard}
             keyExtractor={item => item}
             style={styles.list}
           />
         : <FlatList
-            data={eventList}
-            renderItem={renderEvent}
+            data={festivalList}
+            renderItem={({ item }) =>
+              <Card
+                item={item}
+                to='FestivalDetail'
+                navigation={navigation}
+              />}
             keyExtractor={(item) => item.id}
             style={styles.list}
           />}

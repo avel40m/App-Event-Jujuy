@@ -6,6 +6,7 @@ import { styles } from './FestivalDetailScreen.style'
 import { useNavigation } from '@react-navigation/native'
 import { useContext } from 'react'
 import { UserContext } from '../../contexts/UserContext'
+import { MapComponent } from '../../components/Map'
 
 export const FestivalDetailScreen = ({ route }) => {
   const { item } = route.params
@@ -55,24 +56,10 @@ export const FestivalDetailScreen = ({ route }) => {
             />
           </View>}
       </View>
-
-      <MapView
-        style={styles.map}
-        initialRegion={{
-          latitude: Number(item.locationCoordinates.latitude),
-          longitude: Number(item.locationCoordinates.longitude),
-          latitudeDelta: 0.005,
-          longitudeDelta: 0.005
-        }}
-      >
-        <Marker
-          coordinate={{
-            latitude: Number(item.locationCoordinates.latitude),
-            longitude: Number(item.locationCoordinates.longitude)
-          }}
-          title={item.name}
-        />
-      </MapView>
+      <MapComponent
+        name={item.name}
+        locationCoordinates={item.locationCoordinates}
+      />
     </ScrollView>
   )
 }
