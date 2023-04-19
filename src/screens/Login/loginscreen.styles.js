@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar'
 import { StyleSheet } from 'react-native'
-import { FONT_SIZE } from '../../util/Theme'
+import { COLORS, FONT_SIZE } from '../../util/Theme'
 
 export const styles = StyleSheet.create({
   container: {
@@ -19,19 +19,19 @@ export const styles = StyleSheet.create({
     marginTop: 6,
     marginBottom: 6,
     height: 40,
-    borderColor: '#ccc',
+    borderColor: COLORS.borderColor,
     borderWidth: 1,
     borderRadius: 20,
     paddingHorizontal: 10,
     margin: 20
   },
   errorText: {
-    color: 'red',
+    color: COLORS.primary,
     marginBottom: 8,
     marginLeft: 20
   },
   button: {
-    backgroundColor: 'red',
+    backgroundColor: COLORS.primary,
     paddingVertical: 10,
     paddingHorizontal: 20,
     marginTop: 8,
