@@ -6,6 +6,7 @@ import { useNavigation } from '@react-navigation/native'
 import { useContext } from 'react'
 import { UserContext } from '../../contexts/UserContext'
 import { MapComponent } from '../../components/Map'
+import { COLORS } from '../../util/Theme'
 
 export const EventDetailScreen = ({ route }) => {
   const { item } = route.params
@@ -32,16 +33,16 @@ export const EventDetailScreen = ({ route }) => {
       </View>
       <View style={styles.location}>
         <View style={styles.lugar}>
-          <Entypo name='location' size={24} color='red' />
+          <Entypo name='location' size={24} color={COLORS.primary} />
           <Text style={styles.locationTitle}>{item.place}</Text>
         </View>
         <View style={styles.hours}>
           <View style={styles.timer}>
-            <MaterialIcons name='timer' size={22} color='black' />
+            <MaterialIcons name='timer' size={22} color={COLORS.black} />
             <Text>{item.time}</Text>
           </View>
           <View style={styles.timer}>
-            <Fontisto name='date' size={18} color='black' />
+            <Fontisto name='date' size={18} color={COLORS.black} />
             <Text>{item.date}</Text>
           </View>
         </View>
@@ -50,6 +51,7 @@ export const EventDetailScreen = ({ route }) => {
             <Button
               title='Ver comentarios'
               onPress={() => navigation.navigate('Comment', { name: item.name })}
+              color={COLORS.primary}
             />
           </View>}
       </View>

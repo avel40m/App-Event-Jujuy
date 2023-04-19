@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar'
 import { StyleSheet } from 'react-native'
-import { FONT_SIZE } from '../../util/Theme'
+import { COLORS, FONT_SIZE } from '../../util/Theme'
 
 export const styles = StyleSheet.create({
   container: {
@@ -13,20 +13,20 @@ export const styles = StyleSheet.create({
     alignItems: 'center'
   },
   title: {
-    backgroundColor: 'black',
+    backgroundColor: COLORS.black,
     padding: 50,
-    color: 'white',
+    color: COLORS.white,
     fontSize: FONT_SIZE.lg,
     opacity: 0.8
   },
   logout: {
-    backgroundColor: 'red',
+    backgroundColor: COLORS.primary,
     marginTop: 12,
     padding: 10,
     borderRadius: 20
   },
   textLogout: {
-    color: 'white',
+    color: COLORS.white,
     fontWeight: 'bold',
     fontSize: FONT_SIZE.md
   }

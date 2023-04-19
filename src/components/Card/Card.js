@@ -1,4 +1,5 @@
 import { Image, Pressable, Text, View } from 'react-native'
+import { LinearGradient } from 'expo-linear-gradient'
 import { styles } from './Card.styles'
 
 export const Card = ({ item, to, navigation }) => {
@@ -8,11 +9,14 @@ export const Card = ({ item, to, navigation }) => {
     <Pressable onPress={() => navigation.navigate(to, { item })}>
       <View style={styles.itemContainer}>
         <Image source={{ uri: images[0] }} style={styles.itemImage} />
-        <View style={styles.itemContent}>
+        <LinearGradient
+          colors={['transparent', 'rgba(0, 0, 0, 0.8)']}
+          style={styles.itemContent}
+        >
           <Text style={styles.itemName}>{name}</Text>
-          <Text>{place}</Text>
-          <Text style={styles.itemDate}>{date}</Text>
-        </View>
+          <Text style={styles.itemPlace}>{place}</Text>
+        </LinearGradient>
+        <Text style={styles.itemDate}>{date}</Text>
       </View>
     </Pressable>
   )
